@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Lab — Главная</title>
+    <style>
+        :root {
+            --bg: #0f1117;
+            --card: #1a1d27;
+            --card-hover: #242836;
+            --text: #e8eaed;
+            --muted: #9aa0a6;
+            --accent: #7c9cff;
+            --accent-hover: #9bb3ff;
+            --border: #2a2e3a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .model-card {
+            display: block;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+        }
+
+        .model-card:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .model-card h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+            color: var(--accent);
+        }
+
+        .model-card:hover h2 {
+            color: var(--accent-hover);
+        }
+
+        .model-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .model-card .go {
+            display: inline-block;
+            margin-top: 0.85rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ML Lab</h1>
+            <p>Выберите тип модели</p>
+        </header>
+
+        <div class="models-grid">
+            {% for model in models %}
+            <a class="model-card" href="/models/{{ model.id }}">
+                <h2>{{ model.name }}</h2>
+                <p>{{ model.description }}</p>
+                <span class="go">Перейти →</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
